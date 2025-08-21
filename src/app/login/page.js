@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -66,7 +67,8 @@ function LoginPage() {
           </button>
         </form>
         <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
-          Don't have an account? <a href="/signup" className="text-blue-600">Sign Up</a>
+          {"Don't have an account?"} <Link href="/signup" className="text-blue-600">Sign Up</Link>
+
         </p>
       </div>
     </div>
