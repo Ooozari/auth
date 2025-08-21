@@ -67,7 +67,7 @@ function LoginPage() {
           </button>
         </form>
         <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
-          {"Don't have an account?"} <Link href="/signup" className="text-blue-600">Sign Up</Link>
+          {"Dont have an account?"} <Link href="/signup" className="text-blue-600">Sign Up</Link> 
 
         </p>
       </div>
