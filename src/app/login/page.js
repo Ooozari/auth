@@ -31,7 +31,7 @@ function LoginPage() {
 
     if (email === registeredEmail && password === registeredPassword) {
       // Save user session
-      Cookies.set("user", JSON.stringify({ email }), { expires: 1 });
+      Cookies.set("user", JSON.stringify({ email }), { expires: 1, path: "/" });
       router.push("/");
     } else {
       alert("Invalid email or password!");
