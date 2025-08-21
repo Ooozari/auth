@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function SignUpPage() {
   const [fullName, setFullName] = useState("");
