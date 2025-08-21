@@ -3,23 +3,20 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 export default function Home() {
+  useAuthRedirect()
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
 
 
   const handleLogout = () => {
-    setIsLoading(true)
-    // Remove the cookies
-    Cookies.remove("user");
-    Cookies.remove("signupUser");
+  Cookies.remove("user", { path: "/" }); // remove cookie
+  router.push("/login"); // redirect immediately
+  setIsLoading(true)
+};
 
-    console.log("User logged out!");
-
-    // Redirect to login
-    router.push("/signup");
-  };
   const routes = ["/", "/blogs", "/login", "/product", "/setting", "/signup"];
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--primary-page-bg)] dark:bg-[var(--primary-page-bg)]">

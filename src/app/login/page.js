@@ -8,6 +8,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +64,8 @@ function LoginPage() {
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            Login
+            {isLoading ? "Logging..." : "Login"}
+            
           </button>
         </form>
         <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
