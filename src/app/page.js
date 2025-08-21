@@ -2,11 +2,15 @@
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
+
 
   const handleLogout = () => {
+    setIsLoading(true)
     // Remove the cookies
     Cookies.remove("user");
     Cookies.remove("signupUser");
@@ -51,7 +55,7 @@ export default function Home() {
         onClick={handleLogout}
         className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-5 py-2 rounded-lg transition"
       >
-        Logout
+        {isLoading ? "Logging out..." : "Logout" }
       </button>
     </div>
   );
