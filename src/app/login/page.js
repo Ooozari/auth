@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 function LoginPage() {
+  useAuthRedirect()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();

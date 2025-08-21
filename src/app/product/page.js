@@ -3,6 +3,7 @@ import React from "react"
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 function Page() {
 useAuthRedirect()
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--primary-page-bg)] p-6">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
