@@ -9,9 +9,14 @@ export default function Home() {
   useAuthRedirect()
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
-
+  const userData = Cookies.get("user")
+  const signupUser = Cookies.get("signupUser")
+  console.log("userData", userData)
+  console.log("signupUser", signupUser)
 
   const handleLogout = () => {
+  const data = Cookies.get("user")
+  console.log("Data Logout date",data)
   Cookies.remove("user", { path: "/" }); // remove cookie
   router.push("/login"); // redirect immediately
   setIsLoading(true)
