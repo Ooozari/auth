@@ -1,19 +1,19 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export function middleware(request) {
   const path = request.nextUrl.pathname;
   const publicPaths = ['/login', '/signup'];
-  const isPublicPath = publicPaths.includes(path);
+  const isPublic = publicPaths.includes(path);
 
-  const userToken = request.cookies.get('user')?.value;
+  const token = request.cookies.get('user')?.value;
 
-  // Logged-in user cannot access login/signup
-  if (isPublicPath && userToken) {
+  // If logged-in user tries to access login/signup → redirect to home
+  if (isPublic && token) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  // Not logged-in user cannot access private pages
-  if (!isPublicPath && !userToken) {
+  // If not logged in and trying to access protected page → redirect to login
+  if (!isPublic && !token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
@@ -21,5 +21,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/', '/blogs', '/login', '/product', '/setting', '/signup'],
+  matcher: ['/', '/blogs', '/product', '/setting', '/login', '/signup'],
 };

@@ -1,36 +1,15 @@
-'use client';
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+// app/page.js
+import LogoutButton from "./LogoutButton";
 import Link from "next/link";
-import { useState } from "react";
-import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 export default function Home() {
-  useAuthRedirect()
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false)
-  const userData = Cookies.get("user")
-  const signupUser = Cookies.get("signupUser")
-  console.log("userData", userData)
-  console.log("signupUser", signupUser)
-
-  const handleLogout = () => {
-  const data = Cookies.get("user")
-  console.log("Data Logout date",data)
-  Cookies.remove("user", { path: "/" }); // remove cookie
-  router.push("/login"); // redirect immediately
-  setIsLoading(true)
-};
-
   const routes = ["/", "/blogs", "/login", "/product", "/setting", "/signup"];
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--primary-page-bg)] dark:bg-[var(--primary-page-bg)]">
-      {/* Heading */}
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
         Welcome to the App
       </h1>
-
-      {/* Subheading */}
       <p className="text-gray-600 dark:text-gray-300 mb-6">
         Manage your account and settings easily
       </p>
@@ -38,12 +17,9 @@ export default function Home() {
       <div className="p-6 mb-10 bg-white dark:bg-gray-800 rounded-xl shadow-lg w-[600px] mx-auto">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Routes</h3>
         <ul className="space-y-2">
-          {routes.map((route) => (
+          {routes.map(route => (
             <li key={route}>
-              <Link
-                href={route}
-                className="text-blue-600 dark:text-blue-400 hover:underline"
-              >
+              <Link href={route} className="text-blue-600 dark:text-blue-400 hover:underline">
                 {route}
               </Link>
             </li>
@@ -51,14 +27,7 @@ export default function Home() {
         </ul>
       </div>
 
-
-      {/* Logout Button */}
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-5 py-2 rounded-lg transition"
-      >
-        {isLoading ? "Logging out..." : "Logout" }
-      </button>
+      <LogoutButton />
     </div>
   );
 }
